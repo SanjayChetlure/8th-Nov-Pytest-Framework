@@ -1,19 +1,13 @@
 import time
-
 from selenium import webdriver
-
 from Page_Classes.HomePage import SwagLabHomePage
 from Page_Classes.LoginPage import SwagLabLoginPage
 
 
 class Test_SwagLabLogin:
 
-    def test_TC1_loginWithValidData(self):
-        driver = webdriver.Edge()
-        driver.get("https://www.saucedemo.com/")
-        driver.maximize_window()
-        driver.implicitly_wait(5)
-
+    def test_TC1_loginWithValidData(self,initializeBrowser):
+        driver=initializeBrowser
         login = SwagLabLoginPage(driver)
         login.enterUsername("standard_user")
         time.sleep(1)
@@ -31,12 +25,8 @@ class Test_SwagLabLogin:
             assert False
         time.sleep(10)
 
-    def aest_TC2_loginWithInvalidData(self):
-        driver = webdriver.Edge()
-        driver.get("https://www.saucedemo.com/")
-        driver.maximize_window()
-        driver.implicitly_wait(5)
-
+    def test_TC2_loginWithInvalidData(self,initializeBrowser):
+        driver=initializeBrowser
         login = SwagLabLoginPage(driver)
         login.enterUsername("standard_user")
         time.sleep(1)
