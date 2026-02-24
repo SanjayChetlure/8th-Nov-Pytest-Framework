@@ -2,6 +2,7 @@ import time
 from selenium import webdriver
 from Page_Classes.HomePage import SwagLabHomePage
 from Page_Classes.LoginPage import SwagLabLoginPage
+from UtilityClasses.readProperties import ReadConfig
 
 
 class Test_SwagLabLogin:
@@ -9,9 +10,9 @@ class Test_SwagLabLogin:
     def test_TC1_loginWithValidData(self,initializeBrowser):
         driver=initializeBrowser
         login = SwagLabLoginPage(driver)
-        login.enterUsername("standard_user")
+        login.enterUsername(ReadConfig.getAppCred("App Credentials","username"))
         time.sleep(1)
-        login.enterPassword("secret_sauce")
+        login.enterPassword(ReadConfig.getAppCred("App Credentials","password"))
         time.sleep(1)
         login.clickOnLoginBtn()
 
