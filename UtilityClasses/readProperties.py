@@ -1,9 +1,6 @@
 import configparser
-
 rawConfigParserObj=configparser.RawConfigParser()
 rawConfigParserObj.read(".\\Configuration\\config.ini")
-
-
 
 class ReadConfig:
 
