@@ -25,7 +25,7 @@ class Test_SwagLabLogin:
 
         home = SwagLabHomePage(driver)
         actHederName = home.getHeaderName()
-        expHeaderName = "Swag Labs1"
+        expHeaderName = "Swag Labs"
 
         if actHederName == expHeaderName:
             self.logger.info("--act & Exp header name matched--")
@@ -63,6 +63,8 @@ class Test_SwagLabLogin:
             self.logger.info("--act & exp login failed error msg matched--")
             assert False
         time.sleep(5)
+
+    # def test_TC3_veriryTotalProductsInHomePage(self, initializeBrowser, request):
 
 
 
