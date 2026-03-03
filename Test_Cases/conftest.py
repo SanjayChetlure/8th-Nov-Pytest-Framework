@@ -11,20 +11,18 @@ def openApp(driver):
 
 @pytest.fixture
 def initializeBrowser(browser):
+    browser=browser.lower()
     if browser=="chrome":
         driver = webdriver.Chrome()
-        openApp(driver)
-        return driver
     elif browser=="firefox":
         driver = webdriver.Firefox()
-        openApp(driver)
-        return driver
     elif browser=="edge":
         driver=webdriver.Edge()
-        openApp(driver)
-        return driver
 
+    openApp(driver)
+    return driver
 
+#below code is to run script on specified browser
 def pytest_addoption(parser):
     parser.addoption("--browser",
                     action="store",
@@ -34,6 +32,14 @@ def pytest_addoption(parser):
 def browser(request):
   return request.config.getoption("--browser")
 
+
+
+#below code is to generate html report after execution of every script
+@pytest.hookimpl(optionalhook=True)
+def pytest_metadata(metadata):
+   metadata['Project Name'] = 'Swag Labs'
+   metadata['Module Name'] = 'Login'
+   metadata['Tester Name'] = 'Sanjay'
 
 
 
