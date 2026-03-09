@@ -5,6 +5,7 @@ class SwagLabHomePage:
 
     # 1: declare locator globally
     header="//div[@class='app_logo']"
+    backpackProduct="(//div[@class='inventory_item_name '])[1]"
 
 
     # 2: initialization of webdriver object within constructor
@@ -16,3 +17,7 @@ class SwagLabHomePage:
     def getHeaderName(self):
         actHeader=self.driver.find_element(By.XPATH,self.header).text
         return actHeader
+
+    def get1stProductName(self):
+        firstProductName=self.driver.find_element(By.XPATH,self.backpackProduct).text
+        return firstProductName

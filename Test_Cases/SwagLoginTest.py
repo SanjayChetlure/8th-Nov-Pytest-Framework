@@ -5,6 +5,7 @@ from selenium import webdriver
 from Page_Classes.HomePage import SwagLabHomePage
 from Page_Classes.LoginPage import SwagLabLoginPage
 from UtilityClasses.customLogger import LogGen
+from UtilityClasses.readExcel import ReadExcel
 from UtilityClasses.readProperties import ReadConfig
 from UtilityClasses.screenshotUtility import ScreenshotUtility
 
@@ -28,7 +29,7 @@ class Test_SwagLabLogin:
 
         home = SwagLabHomePage(driver)
         actHederName = home.getHeaderName()
-        expHeaderName = "Swag Labs"
+        expHeaderName = ReadExcel.getExcelData(1,1)
 
         if actHederName == expHeaderName:
             self.logger.info("--act & Exp header name matched--")
@@ -54,7 +55,7 @@ class Test_SwagLabLogin:
         self.logger.info("--clicked on login btn--")
         time.sleep(2)
         actErrorMsg = login.getLoginFailedErrorMsg()
-        expErrorMsg = "Epic sadface: Username and password do not match any user in this service"
+        expErrorMsg =  ReadExcel.getExcelData(2,1)  #"Epic sadface: Username and password do not match any user in this service"
 
         print("act Error: ", actErrorMsg)
         print("Exp Error: ", expErrorMsg)
@@ -68,33 +69,27 @@ class Test_SwagLabLogin:
             assert False
         time.sleep(5)
 
-    @pytest.mark.functional
-    @pytest.mark.regression
-    def test_TC3_loginWithInvalidData(self, initializeBrowser, request):
+    @pytest.mark.productModule
+    def test_TC3_verifyProductName(self, initializeBrowser, request):
         driver = initializeBrowser
         login = SwagLabLoginPage(driver)
-        login.enterUsername("standard_user")
+        login.enterUsername(ReadConfig.getAppCred("App Credentials", "username"))
         self.logger.info("--username entered--")
         time.sleep(1)
-        login.enterPassword("abcd")
+        login.enterPassword(ReadConfig.getAppCred("App Credentials", "password"))
         self.logger.info("--password entered--")
         time.sleep(1)
         login.clickOnLoginBtn()
-        self.logger.info("--clicked on login btn--")
-        time.sleep(2)
-        actErrorMsg = login.getLoginFailedErrorMsg()
-        expErrorMsg = "Epic sadface: Username and password do not match any user in this service"
-
-        print("act Error: ", actErrorMsg)
-        print("Exp Error: ", expErrorMsg)
-
-        if actErrorMsg == expErrorMsg:
-            self.logger.info("--act & exp login failed error msg matched--")
+        self.logger.info("--clicked on login btn----")
+        home=SwagLabHomePage(driver)
+        actProductName=home.get1stProductName()
+        expProductName=ReadExcel.getExcelData(2,2)
+        print(actProductName)
+        print(expProductName)
+        if actProductName == expProductName:
+            self.logger.info("--act & exp product name matched--")
             assert True
         else:
             ScreenshotUtility.captureSS(driver, request.node.name)
-            self.logger.info("--act & exp login failed error msg matched--")
+            self.logger.info("--act & exp product name msg matched--")
             assert False
-        time.sleep(5)
-
-
