@@ -100,7 +100,7 @@ class Test_SwagLabLogin:
         home = SwagLabHomePage(driver)
         time.sleep(4)
         actProductSize = home.getAllProductSize()
-        expProductSize = 6   #ReadExcel.getExcelData(4,1)
+        expProductSize = 6   #ReadExcel.getExcelDataInt(4,1)
         print(actProductSize)
         print(expProductSize)
         if actProductSize == expProductSize:
@@ -111,7 +111,7 @@ class Test_SwagLabLogin:
             self.logger.info("--act & exp product size msg matched--")
             assert False
 
-    @pytest.mark.productModule
+
     def test_TC5_verifyProductPrice(self, initializeBrowser, request):
         driver = initializeBrowser
         self.loginToApp(driver)
@@ -119,7 +119,8 @@ class Test_SwagLabLogin:
         home = SwagLabHomePage(driver)
         time.sleep(4)
         actProductPrice = float(home.get1stProductPrice())
-        expProductPrice = 29.99  # ReadExcel.getExcelData(5,1)
+        print(ReadExcel.getExcelData(5, 1))
+        expProductPrice = 29.99         #ReadExcel.getExcelDataFloat(5,1)   #29.99  #
         print(actProductPrice)
         print(expProductPrice)
         if actProductPrice == expProductPrice:
@@ -127,5 +128,24 @@ class Test_SwagLabLogin:
             assert True
         else:
             ScreenshotUtility.captureSS(driver, request.node.name)
-            self.logger.info("--act & exp product price msg matched--")
+            self.logger.info("--act & exp product price msg mis-matched--")
+            assert False
+
+    @pytest.mark.productModule
+    def test_TC6_verifyAllProductPrice(self, initializeBrowser, request):
+        driver = initializeBrowser
+        self.loginToApp(driver)
+
+        home = SwagLabHomePage(driver)
+        time.sleep(4)
+        actTotalProductPrice = home.getAllProductPrice()
+        expTotalProductPrice = 129.94  #ReadExcel.getExcelDataFloat(6,1)   #29.99  #
+        print(actTotalProductPrice)
+        print(expTotalProductPrice)
+        if actTotalProductPrice == expTotalProductPrice:
+            self.logger.info("--act & exp product price matched--")
+            assert True
+        else:
+            ScreenshotUtility.captureSS(driver, request.node.name)
+            self.logger.info("--act & exp product price msg mis-matched--")
             assert False
