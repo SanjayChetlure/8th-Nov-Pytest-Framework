@@ -26,11 +26,14 @@ print(dataInInt+5)
 dataInfloat=float(sheet.cell(1,4).value)
 print(dataInfloat)
 
-sheet1=workbbok["SwagLab"]
+sheet1=workbbok["Sheet3"]
+print(sheet1.cell(3,1).value)
+print(sheet1.cell(3,1).value)
+print(sheet1.cell(3,1).value)
 print(sheet1.cell(3,1).value)
 
-firstProductPrice = "$29.99"
-firstProductPrice=firstProductPrice[1:]
-print(firstProductPrice)
+# firstProductPrice = "$29.99"
+# firstProductPrice=firstProductPrice[1:]
+# print(firstProductPrice)
 
 

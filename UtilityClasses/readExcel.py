@@ -5,7 +5,7 @@ class ReadExcel:
    def getExcelData(rowIndex,colIndex):
       workbook = openpyxl.load_workbook(
           "D:\Python\Workspace\FrameworkSetup_Pytest\TestData\8thNovSwagLab.xlsx")
-      sheet = workbook['SwagLab']
+      sheet = workbook["SwagLab"]
 
       data = sheet.cell(rowIndex, colIndex).value
       return data
@@ -19,3 +19,13 @@ class ReadExcel:
       s2 = sheet.cell(rowIndex, colIndex).value
       s2 = int(s2)  # convert String to int
       return s2
+
+   @staticmethod
+   def getExcelDataFloat(rowIndex, colIndex):
+      workbook = openpyxl.load_workbook(
+         "D:\Python\Workspace\FrameworkSetup_Pytest\TestData\8thNovSwagLab.xlsx")
+      sheet = workbook["SwagLab"]
+
+      data = sheet.cell(rowIndex, colIndex).value
+      data=float(data)
+      return data
