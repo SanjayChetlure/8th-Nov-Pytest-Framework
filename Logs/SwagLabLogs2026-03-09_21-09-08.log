@@ -1,0 +1,12 @@
+2026-03-09 21:09:12: INFO: --username entered--
+2026-03-09 21:09:13: INFO: --password entered--
+2026-03-09 21:09:14: INFO: --clicked on login button--
+2026-03-09 21:09:14: INFO: --act & Exp header name matched--
+2026-03-09 21:09:27: INFO: --username entered--
+2026-03-09 21:09:28: INFO: --password entered--
+2026-03-09 21:09:29: INFO: --clicked on login btn--
+2026-03-09 21:09:31: INFO: --act & exp login failed error msg matched--
+2026-03-09 21:09:38: INFO: --username entered--
+2026-03-09 21:09:40: INFO: --password entered--
+2026-03-09 21:09:41: INFO: --clicked on login btn--
+2026-03-09 21:09:43: INFO: --act & exp login failed error msg matched--
