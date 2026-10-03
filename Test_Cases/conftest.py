@@ -20,7 +20,10 @@ def initializeBrowser(browser):
         driver=webdriver.Edge()
 
     openApp(driver)
-    return driver
+    # return driver
+    yield driver  #  test will run here
+    driver.quit()
+
 
 #below code is to run script on specified browser
 def pytest_addoption(parser):
